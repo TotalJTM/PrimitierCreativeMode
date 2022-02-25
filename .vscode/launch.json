@@ -1,0 +1,24 @@
+// {
+//     "version": "2.0.0",
+//     "configurations": [
+
+//      {
+//        "name": ".NET Core Launch (console)",
+//        "type": "coreclr",
+//        "request": "launch",
+//        "preLaunchTask": "build",
+//        "program": "${workspaceFolder}/PrimitierModdingFramework/DemoMod/bin/Debug/*.dll",
+//        "args": [],
+//        "cwd": "${workspaceFolder}/PrimitierModdingFramework/DemoMod/bin/Debug/*",
+//        "console": "internalConsole",
+//        "stopAtEntry": false,
+//        "internalConsoleOptions": "openOnSessionStart"
+//      },
+//      {
+//        "name": ".NET Core Attach",
+//        "type": "coreclr",
+//        "request": "attach",
+//        "processId": "${command:pickProcess}"
+//      },
+//    ]
+//    }
