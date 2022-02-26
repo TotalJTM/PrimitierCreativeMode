@@ -1,5 +1,5 @@
 ### Primitier Creative Mode Mod ###
-Version 0.1         Created by totalJTM
+Version 0.1         Created by TotalJTM
 
 ## Overview and Features ##
 This mod adds a creative mode menu to the PrimitierModdingFramework menu. With this mod, you can:
@@ -11,6 +11,8 @@ This mod adds a creative mode menu to the PrimitierModdingFramework menu. With t
 
 ## Installation ##
 This mod should be installed with the [PMFModManager](https://github.com/Xgames123/PrimitierModManager).
+
+Open the ```PrimitierCreativeModeFilesV0.1.zip``` file and drag the two zip files ```PrimitierCreativeModeV0.1.zip``` and ```PrimitierModFrameworkJTM_V0.2.1.zip``` into the mod manager. Load order does not seem to matter but I always load the modified framework first.
 
 ## Future Mod Additions ##
 - [] flying through joystick commands

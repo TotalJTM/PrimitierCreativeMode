@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
-[assembly: MelonInfo(typeof(CreativeMode.CreativeMode), "A creative mode mod for Primitier using a custom version of PrimitierModdingFrameworkV0.2", "0.1.0", "totalJTM")]
+[assembly: MelonInfo(typeof(CreativeMode.CreativeMode), "A creative mode mod for Primitier using a custom version of PrimitierModdingFrameworkV0.2", "0.1.0", "TotalJTM")]
 [assembly: MelonGame("PrimitierDev", "Primitier")]
