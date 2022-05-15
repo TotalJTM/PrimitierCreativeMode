@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CreativeMode")]
+[assembly: AssemblyTitle(BuildInfo.Name)]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
@@ -33,7 +33,18 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
-[assembly: MelonInfo(typeof(CreativeMode.CreativeMode), "A creative mode mod for Primitier using a custom version of PrimitierModdingFrameworkV0.2", "0.1.0", "TotalJTM")]
+[assembly: AssemblyVersion(BuildInfo.Version)]
+[assembly: AssemblyFileVersion(BuildInfo.Version)]
+[assembly: MelonInfo(typeof(CreativeMode.CreativeMode), BuildInfo.Description, BuildInfo.Version, BuildInfo.Authors)]
 [assembly: MelonGame("PrimitierDev", "Primitier")]
+
+public static class BuildInfo
+{
+	public const string Version = "1.1.0.0";
+
+	public const string Authors = "TotalJTM, Forked by XGames105";
+
+	public const string Name = "CreativeMod";
+	public const string Description = "A fork of the creative mod of TotalJTM";
+
+}
