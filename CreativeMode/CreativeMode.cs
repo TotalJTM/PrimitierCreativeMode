@@ -21,10 +21,16 @@ namespace CreativeMode
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
 			var creativeMenu = InGameDebugTool.CreateMenu("Creative Menu", "MainMenu");
-			var creativeBlockBuilderMenu = BlockBuilderMenu.CreateBlockBuilderMenu();
 			var creativeGodModeMenu = CreateCreativeGodMenu();
 
 		}
+
+		public override void OnRealyLateStart()
+		{
+			base.OnRealyLateStart();
+			var creativeBlockBuilderMenu = BlockBuilderMenu.CreateBlockBuilderMenu(); //This is here so that modded substances that are created in OnSceneWasLoaded will be added to the spawn list
+		}
+
 
 		public override void OnApplicationStart()
 		{
@@ -39,13 +45,12 @@ namespace CreativeMode
 
 
 
-
-
-		public bool godmodeFlying = false;
 		public InGameDebugToolToggleButton RegenHealthToggle;
 		public InGameDebugToolToggleButton InfiniteHealthToggle;
 		public InGameDebugToolToggleButton AntigravityToggle;
-		public InGameDebugMenu CreateCreativeGodMenu(){
+		
+		public InGameDebugMenu CreateCreativeGodMenu()
+		{
 			var newmenu = InGameDebugTool.CreateMenu("God Modes", "Creative Menu");
 
 			//Activate flying mode
@@ -65,12 +70,7 @@ namespace CreativeMode
 
 			return newmenu;
 		}
-		public void UpdateLastRecordedButtonPress(){
-			lastTimeBtnPressed = sysTime.Ticks;
-		}
-		public long TimeSinceLastButtonPress(){
-			return sysTime.Ticks - lastTimeBtnPressed;
-		}
+
 
 		private bool last_infiniteHealth = false;
 		private float lastRegenHealth = 1000f;
@@ -87,6 +87,12 @@ namespace CreativeMode
 		{
 			base.OnUpdate();
 			sysTime = DateTime.Now;
+
+			if (RegenHealthToggle == null)
+			{
+				return;
+			}
+
 
 			if(RegenHealthToggle.Value)
 			{
@@ -119,20 +125,20 @@ namespace CreativeMode
 				}
 			}
 
-			if(InfiniteHealthToggle)
+			if(InfiniteHealthToggle.Value)
 			{
 				PlayerLife.MaxLife = float.MaxValue;
 				PlayerLife.Life = float.MaxValue;
 				last_infiniteHealth = true;
 			}
-			if(last_infiniteHealth == true && InfiniteHealthToggle == false)
+			if(last_infiniteHealth == true && InfiniteHealthToggle.Value == false)
 			{
 				PlayerLife.MaxLife = 1000;
 				PlayerLife.Life = 1000;
 				last_infiniteHealth = false;
 			}
 
-			if(AntigravityToggle)
+			if(AntigravityToggle.Value)
 			{ 
 				PMFHelper.PlayerMovement.rb.useGravity = false;
 			}
@@ -147,6 +153,8 @@ namespace CreativeMode
 
 		public override void OnFixedUpdate()
 		{
+			base.OnFixedUpdate();
+			BlockBuilderMenu.UpdateCursor();
 			
 			/* if(godmodeFlying)
 			{ 

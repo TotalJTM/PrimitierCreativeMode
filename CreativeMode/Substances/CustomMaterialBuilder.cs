@@ -29,7 +29,12 @@ namespace CreativeMode.Substances
 			customSubstance.density = 50; //Mass through =m/v relationship?
 			customSubstance.strength = 99999; //HP
 
-			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
+			CustomSubstanceSystem.LoadCustomSubstance(customSubstance, new CustomSubstanceSettings()
+			{
+				EnName = "Custom material",
+				JpName = "カスタム素材"
+
+			});
 		}
 	}
 }

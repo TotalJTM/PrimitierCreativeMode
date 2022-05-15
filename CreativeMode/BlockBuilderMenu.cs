@@ -19,15 +19,16 @@ namespace CreativeMode
 		public static float blockSizeDec = 0.025f;
 		public static Vector3 creativeBlockGenerationOffset = new Vector3(.75f, 0.0f, -0.75f);
 
-		private static GameObject SpawnCursor;
-
+		public static GameObject SpawnCursor;
 		public static InGameDebugMenu BlockbuilderMenu;
+
+		private static int _spawnCursorBlinkCounter = 0;
 
 		public static InGameDebugMenu CreateBlockBuilderMenu()
 		{
 			SpawnCursor = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			UnityEngine.Object.Destroy(SpawnCursor.GetComponent<BoxCollider>());
-
+			SpawnCursor.GetComponent<MeshRenderer>().material.color = new Color(0, 0.5f, 1f);
 
 			BlockbuilderMenu = InGameDebugTool.CreateMenu("Blockbuilder Menu", "Creative Menu");
 
@@ -38,7 +39,6 @@ namespace CreativeMode
 				{
 					blockSize.x += blockSizeInc;
 				}
-				UpdateCursor();
 			}));
 			BlockbuilderMenu.CreateButton("IncY", new System.Action(() =>
 			{
@@ -46,7 +46,6 @@ namespace CreativeMode
 				{
 					blockSize.y += blockSizeInc;
 				}
-				UpdateCursor();
 			}));
 			BlockbuilderMenu.CreateButton("IncZ", new System.Action(() =>
 			{
@@ -54,7 +53,6 @@ namespace CreativeMode
 				{
 					blockSize.z += blockSizeInc;
 				}
-				UpdateCursor();
 			}));
 			////Label Widgets
 			//newmenu.CreateLabelWidget("Xcounter", blockSize.x.ToString("0.000"));
@@ -69,7 +67,6 @@ namespace CreativeMode
 					blockSize.x -= blockSizeDec;
 					//newmenu.SetLabelWidgetText("Xcounter", blockSize.x.ToString("0.000"));
 				}
-				UpdateCursor();
 			}));
 			BlockbuilderMenu.CreateButton("DecY", new System.Action(() =>
 			{
@@ -78,7 +75,6 @@ namespace CreativeMode
 					blockSize.y -= blockSizeDec;
 					//newmenu.SetLabelWidgetText("Ycounter", blockSize.y.ToString("0.000"));
 				}
-				UpdateCursor();
 			}));
 			BlockbuilderMenu.CreateButton("DecZ", new System.Action(() =>
 			{
@@ -87,18 +83,16 @@ namespace CreativeMode
 					blockSize.z -= blockSizeDec;
 					//newmenu.SetLabelWidgetText("Zcounter", blockSize.z.ToString("0.000"));
 				}
-				UpdateCursor();
 			}));
 
 			BlockbuilderMenu.CreateButton("Set Small\nBlock Size", new System.Action(() =>
 			{
 				blockSize = new Vector3(0.25f, 0.25f, 0.25f); ;
-				UpdateCursor();
 			}));
 			BlockbuilderMenu.CreateButton("Set Large\nBlock Size", new System.Action(() =>
 			{
 				blockSize = new Vector3(1.5f, 1.5f, 1.5f); ;
-				UpdateCursor();
+
 			}));
 
 
@@ -113,10 +107,11 @@ namespace CreativeMode
 			{
 				var sub = SubstanceManager.instance.param[i];
 				var name = Localizer.GetLocalizedString(sub.displayNameKey);
+				Substance blockIdSubstance = (Substance)i;
 
 				BlockbuilderMenu.CreateButton(name, new System.Action(() => 
 				{
-					CubeGenerator.GenerateCube(SpawnCursor.transform.position, SpawnCursor.transform.localScale, (Substance)i);
+					CubeGenerator.GenerateCube(SpawnCursor.transform.position, SpawnCursor.transform.localScale, blockIdSubstance);
 
 				}));
 
@@ -182,8 +177,25 @@ namespace CreativeMode
 
 		public static void UpdateCursor()
 		{
+			if (SpawnCursor == null)
+			{
+				return;
+			}
+
+			SpawnCursor.SetActive(InGameDebugTool.IsShown);
+
 			SpawnCursor.transform.localScale = blockSize;
 			SpawnCursor.transform.position = BlockbuilderMenu.transform.position + creativeBlockGenerationOffset;
+
+
+			if (_spawnCursorBlinkCounter >= 30)
+			{
+				SpawnCursor.GetComponent<MeshRenderer>().enabled = !SpawnCursor.GetComponent<MeshRenderer>().enabled;
+				_spawnCursorBlinkCounter = 0;
+			}
+
+
+			_spawnCursorBlinkCounter++;
 		}
 
 	}

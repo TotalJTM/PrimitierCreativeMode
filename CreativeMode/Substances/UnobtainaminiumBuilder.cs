@@ -30,7 +30,12 @@ namespace CreativeMode.Substances
 			customSubstance.density = 0.01f; //Mass through =m/v relationship?
 			customSubstance.strength = 99999; //HP
 
-			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
+			CustomSubstanceSystem.LoadCustomSubstance(customSubstance, new CustomSubstanceSettings()
+			{
+				EnName = "Unobtainium",
+				JpName = "ウンオブタミニウム"
+
+			});
 		}
 	}
 }
