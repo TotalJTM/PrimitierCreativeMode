@@ -1,84 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
+		
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34CE6DED-C150-485F-9408-801AA9E99983}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net472</TargetFramework>
     <RootNamespace>CreativeMode</RootNamespace>
-    <AssemblyName>CreativeMode</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <Title>Creative mod (Fork)</Title>
+    <Description>A fork of the creative mod of TotalJTM</Description>
+	  
+    <Authors>TotalJTM, Forked by XGames105</Authors>
+    <Version>1.2.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+	<ItemGroup>
+		<PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.1" />
+		<PackageReference Include="XGames105.PMF" Version="0.5.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+	
+  <PropertyGroup>
+    <UseDirectLink>true</UseDirectLink>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <ProxyDllsFolder>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed</ProxyDllsFolder>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="BlockBuilderMenu.cs" />
-    <Compile Include="CreativeMode.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Substances\CustomMaterialBuilder.cs" />
-    <Compile Include="Substances\UnobtainaminiumBuilder.cs" />
-    <Compile Include="Substances\UnobtainiumBuilder.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Mod.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\Dlls\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>..\Dlls\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem">
-      <HintPath>..\Dlls\Il2CppSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Core">
-      <HintPath>..\Dlls\Il2CppSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>..\Dlls\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="PrimitierModdingFrameworkV0.4">
-      <HintPath>PMFLibV0.4\PrimitierModdingFrameworkV0.4.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>..\Dlls\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\Dlls\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\Dlls\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\Dlls\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <MelonloaderDll>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\MelonLoader.dll</MelonloaderDll>
+  </PropertyGroup>
 </Project>

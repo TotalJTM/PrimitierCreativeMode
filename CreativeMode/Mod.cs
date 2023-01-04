@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CreativeMode
 {
-	public class CreativeMode : PrimitierMod
+	public class Mod : PrimitierMod
     {
 		//Vector3 initialBlockSize = new Vector3(0.5f,0.5f,0.5f);
 

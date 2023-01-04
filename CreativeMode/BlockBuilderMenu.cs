@@ -17,6 +17,8 @@ namespace CreativeMode
 		public static float lowerBlockSizeLim = 0.025f;
 		public static float blockSizeInc = 0.025f;
 		public static float blockSizeDec = 0.025f;
+		public static float blockPosInc = 0.1f;
+		public static float blockPosDec = 0.1f;
 		public static Vector3 creativeBlockGenerationOffset = new Vector3(.75f, 0.0f, -0.75f);
 
 		public static GameObject SpawnCursor;
@@ -31,6 +33,33 @@ namespace CreativeMode
 			SpawnCursor.GetComponent<MeshRenderer>().material.color = new Color(0, 0.5f, 1f);
 
 			BlockbuilderMenu = InGameDebugTool.CreateMenu("Blockbuilder Menu", "Creative Menu");
+
+			BlockbuilderMenu.CreateButton("Pos IncX", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.x += blockPosInc;
+			}));
+			BlockbuilderMenu.CreateButton("Pos IncY", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.y += blockPosInc;
+			}));
+			BlockbuilderMenu.CreateButton("Pos IncZ", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.z += blockPosInc;
+			}));
+
+			//Decrement Buttons
+			BlockbuilderMenu.CreateButton("Pos DecX", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.x -= blockPosInc;
+			}));
+			BlockbuilderMenu.CreateButton("Pos DecY", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.y -= blockPosInc;
+			}));
+			BlockbuilderMenu.CreateButton("Pos DecZ", new System.Action(() =>
+			{
+				creativeBlockGenerationOffset.z -= blockPosInc;
+			}));
 
 			//Increment Buttons
 			BlockbuilderMenu.CreateButton("IncX", new System.Action(() =>
@@ -94,6 +123,10 @@ namespace CreativeMode
 				blockSize = new Vector3(1.5f, 1.5f, 1.5f); ;
 
 			}));
+			BlockbuilderMenu.CreateButton("Reset Pos", new System.Action(() =>
+			{
+				blockSize = new Vector3(.75f, 0.0f, -0.75f);
+			}));
 
 
 			//SpawningObjects
@@ -127,8 +160,21 @@ namespace CreativeMode
 			{
 				CubeGenerator.GenerateEngine(SpawnCursor.transform.position, Quaternion.identity);
 			}));
+			BlockbuilderMenu.CreateButton("Generate\nBearing", new System.Action(() =>
+			{
+				CubeGenerator.GenerateHinge(SpawnCursor.transform.position, Quaternion.identity);
+			}));
+			BlockbuilderMenu.CreateButton("Generate\nDroneFactoryA", new System.Action(() =>
+			{
+				CubeGenerator.GenerateDroneFactoryA(SpawnCursor.transform.position);
+			}));
+			BlockbuilderMenu.CreateButton("Generate\nDroneFactoryB", new System.Action(() =>
+			{
+				CubeGenerator.GenerateDroneFactoryB(SpawnCursor.transform.position);
+			}));
 
-			
+
+
 			foreach (var treeType in Enum.GetValues(typeof(CubeGenerator.TreeType)))
 			{
 				BlockbuilderMenu.CreateButton($"Generate\nTree ({Enum.GetName(typeof(CubeGenerator.TreeType), treeType)})", new System.Action(() =>
